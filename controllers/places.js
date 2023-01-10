@@ -29,7 +29,9 @@ router.get('/:arrayIndex', (req, res) => {
     res.send(places[req.params.arrayIndex])
   })
     
-router.post('/', (req, res) => {
-    res.send('post /places stub')
-})  
+  router.post('/', (req, res) => {
+    console.log(req.body)
+    res.send('POST /places')
+  })
+  
 module.exports = router
