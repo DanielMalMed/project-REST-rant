@@ -13,17 +13,17 @@ function show(data) {
     if (data.place.comments.length) {
         let sumRatings = data.place.comments.reduce((tot, c) => {
             return tot + c.stars
-          }, 0)
-          let averageRating = Math.round(sumRatings / data.place.comments.length)
-          let stars = ''
-          for (let i = 0; i < averageRating; i++) {
+        }, 0)
+        let averageRating = Math.round(sumRatings / data.place.comments.length)
+        let stars = ''
+        for (let i = 0; i < averageRating; i++) {
             stars += '⭐'
-          }
-          rating = (
+        }
+        rating = (
             <h3>
-              {stars} stars
+                {stars} stars
             </h3>
-          )
+        )
         comments = data.place.comments.map(c => {
             return (
                 <div className="border">
@@ -33,6 +33,9 @@ function show(data) {
                         <stong>- {c.author}</stong>
                     </h3>
                     <h4>Rating: {c.stars}</h4>
+                    <form method="POST" action={`/places/${data.place.id}/comment/${c.id}?_method=DELETE`}>
+                        <input type="submit" className="btn btn-danger" value="Delete Comment" />
+                    </form>
                 </div>
             )
         })
@@ -54,7 +57,7 @@ function show(data) {
                     Serving {data.place.cuisines}
                 </h4>
                 <a href={`/places/${data.place.id}/edit`} className="btn btn-warning">
-                  Edit
+                    Edit
                 </a>{` `}
                 <h2>Comments</h2>
                 {comments}
