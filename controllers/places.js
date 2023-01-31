@@ -25,7 +25,7 @@ router.post('/', (req, res) => {
       .then(() => {
 
           res.redirect('/places')
-
+ 
       })
 
       .catch(err => {
